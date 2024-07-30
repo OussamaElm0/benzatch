@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
+
+    protected $fillable =
+        ["path", "montre_id"];
+
+    public function montre()
+    {
+        return $this->belongsTo(Montre::class);
+    }
 }
