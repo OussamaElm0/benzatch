@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
+            $table->string("client_name");
+            $table->string("client_contact");
+            $table->boolean("confirme")->default(0);
+            $table->unsignedSmallInteger("total");
             $table->timestamps();
         });
     }

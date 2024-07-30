@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -13,8 +14,18 @@ return new class extends Migration
     {
         Schema::create('montres', function (Blueprint $table) {
             $table->id();
+            $table->string("serial_number")->unique();
+            $table->foreignId("marque_id")->constrained()->cascadeOnDelete();
+            $table->string("color");
+            $table->unsignedTinyInteger("qunatite");
+            $table->unsignedSmallInteger("prix");
+            $table->text("description");
+            $table->unsignedTinyInteger("reduction")->default(0);
             $table->timestamps();
         });
+
+        //Add condition for reduction
+        DB::statement('ALTER TABLE montres ADD CONSTRAINT chk_reduction CHECK (reduction <= 100)');
     }
 
     /**
