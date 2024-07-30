@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Commande extends Model
 {
     use HasFactory;
+
+    protected $fillable =
+        ["client_name", "client_name", "confirme", "total"];
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }
