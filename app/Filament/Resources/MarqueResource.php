@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\MontreResource\Pages;
-use App\Filament\Resources\MontreResource\RelationManagers;
-use App\Models\Montre;
+use App\Filament\Resources\MarqueResource\Pages;
+use App\Filament\Resources\MarqueResource\RelationManagers;
+use App\Models\Marque;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,13 +13,13 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class MontreResource extends Resource
+class MarqueResource extends Resource
 {
-    protected static ?string $model = Montre::class;
+    protected static ?string $model = Marque::class;
 
-    protected static ?string $navigationIcon = 'feathericon-watch';
+    protected static ?string $navigationIcon = 'tabler-category';
 
-    protected static ?int $navigationSort = 0;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
@@ -58,9 +58,9 @@ class MontreResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListMontres::route('/'),
-            'create' => Pages\CreateMontre::route('/create'),
-            'edit' => Pages\EditMontre::route('/{record}/edit'),
+            'index' => Pages\ListMarques::route('/'),
+            'create' => Pages\CreateMarque::route('/create'),
+            'edit' => Pages\EditMarque::route('/{record}/edit'),
         ];
     }
 }
