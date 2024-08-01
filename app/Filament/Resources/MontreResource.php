@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MontreResource\Pages;
 use App\Filament\Resources\MontreResource\RelationManagers;
+use App\Models\Marque;
 use App\Models\Montre;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -25,7 +26,37 @@ class MontreResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make("serial_number")
+                    ->label("Serial Number")
+                    ->required(),
+                Forms\Components\Select::make("marque_id")
+                    ->label("Marque")
+                    ->options(Marque::all()->pluck("brand","id"))
+                    ->searchable()
+                    ->required(),
+                Forms\Components\TextInput::make("color")
+                    ->label("Color")
+                    ->required(),
+                Forms\Components\TextInput::make("quantite")
+                    ->label("Quantité")
+                    ->numeric()
+                    ->minValue(0)
+                    ->step(1)
+                    ->required(),
+                Forms\Components\TextInput::make("prix")
+                    ->label("Prix")
+                    ->numeric()
+                    ->minValue(0)
+                    ->step(1)
+                    ->required(),
+                Forms\Components\Textarea::make("description")
+                    ->label("Description")
+                    ->required(),
+                Forms\Components\TextInput::make("reduction")
+                    ->label("Reduction")
+                    ->numeric()
+                    ->minValue(0)
+                    ->maxValue(100),
             ]);
     }
 
