@@ -6,11 +6,14 @@ use App\Filament\Resources\MontreResource\Pages;
 use App\Filament\Resources\MontreResource\RelationManagers;
 use App\Models\Marque;
 use App\Models\Montre;
+use Doctrine\DBAL\Types\TextType;
+use Filament\Actions\DeleteAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Support\Colors\Color;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -64,13 +67,25 @@ class MontreResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make("serial_number")
+                    ->label("Serial Number")
+                    ->searchable(),
+                Tables\Columns\TextColumn::make("color")
+                    ->label("Color")
+                    ->searchable(),
+                Tables\Columns\TextColumn::make("quantite")
+                    ->label("Quantite"),
+                Tables\Columns\TextColumn::make("prix")
+                    ->label("Prix"),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->color(Color::Green),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
