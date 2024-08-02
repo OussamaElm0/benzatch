@@ -70,13 +70,17 @@ class MontreResource extends Resource
                 Tables\Columns\TextColumn::make("serial_number")
                     ->label("Serial Number")
                     ->searchable(),
+                Tables\Columns\TextColumn::make("marque.brand")
+                    ->label("Marque")
+                    ->searchable(),
                 Tables\Columns\TextColumn::make("color")
                     ->label("Color")
                     ->searchable(),
                 Tables\Columns\TextColumn::make("quantite")
                     ->label("Quantite"),
                 Tables\Columns\TextColumn::make("prix")
-                    ->label("Prix"),
+                    ->label("Prix")
+                    ->money("MAD"),
             ])
             ->filters([
                 //
