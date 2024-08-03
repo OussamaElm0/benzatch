@@ -35,7 +35,12 @@ class MarqueResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make("brand")
+                    ->searchable()
+                    ->label("Brand"),
+                Tables\Columns\TextColumn::make("montres_count")
+                    ->label("Nombre des montres")
+                    ->counts("montres")
             ])
             ->filters([
                 //
