@@ -25,7 +25,9 @@ class MarqueResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make("brand")
+                    ->label("Brand")
+                    ->required(),
             ]);
     }
 
