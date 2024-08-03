@@ -3,14 +3,19 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MarqueResource\Pages;
-use App\Filament\Resources\MarqueResource\RelationManagers;
+use App\Filament\Resources\MarqueResource\RelationManagers\MontresRelationManager;
 use App\Models\Marque;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\ColorEntry;
+use Filament\Infolists\Components\RepeatableEntry;
+use Filament\Infolists\Components\Tabs;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Infolists\Infolist;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -59,10 +64,30 @@ class MarqueResource extends Resource
             ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                TextEntry::make('brand'),
+                TextEntry::make('montres_count'),
+                RepeatableEntry::make('montres')
+                    ->schema([
+                        TextEntry::make('serial_number')
+                            ->color(Color::Green)
+                            ->size(TextEntry\TextEntrySize::Medium),
+                        TextEntry::make('quantite')
+                            ->color(Color::Green)
+                            ->size(TextEntry\TextEntrySize::Medium),
+                        ColorEntry::make('color'),
+                    ])
+                    ->grid(2),
+            ]);
+    }
+
     public static function getRelations(): array
     {
         return [
-            //
+            MontresRelationManager::class,
         ];
     }
 

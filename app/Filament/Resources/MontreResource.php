@@ -52,14 +52,14 @@ class MontreResource extends Resource
                     ->minValue(0)
                     ->step(1)
                     ->required(),
-                Forms\Components\Textarea::make("description")
-                    ->label("Description")
-                    ->required(),
                 Forms\Components\TextInput::make("reduction")
                     ->label("Reduction")
                     ->numeric()
                     ->minValue(0)
                     ->maxValue(100),
+                Forms\Components\MarkdownEditor::make("description")
+                    ->label("Description")
+                    ->required(),
             ]);
     }
 
