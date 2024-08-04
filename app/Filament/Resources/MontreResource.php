@@ -4,18 +4,22 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MontreResource\Pages;
 use App\Filament\Resources\MontreResource\RelationManagers;
+use App\Filament\Resources\MontreResource\RelationManagers\MarqueRelationManager;
 use App\Models\Marque;
 use App\Models\Montre;
-use Doctrine\DBAL\Types\TextType;
 use Filament\Actions\DeleteAction;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\ColorEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Support\Colors\Color;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Cache;
 
 class MontreResource extends Resource
 {
@@ -24,6 +28,11 @@ class MontreResource extends Resource
     protected static ?string $navigationIcon = 'feathericon-watch';
 
     protected static ?int $navigationSort = 0;
+
+    public static function query(): Builder
+    {
+        return parent::query()->with('marque'); // Eager load the marque relationship
+    }
 
     public static function form(Form $form): Form
     {
@@ -34,7 +43,11 @@ class MontreResource extends Resource
                     ->required(),
                 Forms\Components\Select::make("marque_id")
                     ->label("Marque")
-                    ->options(Marque::all()->pluck("brand","id"))
+                    ->options(function () {
+                        return Cache::remember('marques', 60, function () {
+                            return Marque::pluck("brand", "id");
+                        });
+                    })
                     ->searchable()
                     ->required(),
                 Forms\Components\TextInput::make("color")
@@ -77,13 +90,13 @@ class MontreResource extends Resource
                     ->label("Color")
                     ->searchable(),
                 Tables\Columns\TextColumn::make("quantite")
-                    ->label("Quantite"),
+                    ->label("Quantité"),
                 Tables\Columns\TextColumn::make("prix")
                     ->label("Prix")
                     ->money("MAD"),
             ])
             ->filters([
-                //
+                // Add filters here if necessary
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -98,10 +111,30 @@ class MontreResource extends Resource
             ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                TextEntry::make('serial_number')
+                    ->label("Serial Number"),
+                TextEntry::make('marque.brand')
+                    ->label("Marque"),
+                TextEntry::make("quantite")
+                    ->label('Quantité'),
+                TextEntry::make("prix")
+                    ->label("Prix")
+                    ->money("MAD"),
+                ColorEntry::make("color"),
+                TextEntry::make("description")
+                    ->label("Description")
+                    ->color(Color::Gray),
+            ]);
+    }
+
     public static function getRelations(): array
     {
         return [
-            //
+            MarqueRelationManager::class,
         ];
     }
 
