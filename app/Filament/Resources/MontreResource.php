@@ -1,13 +1,14 @@
 <?php
 
+//TODO:
+//The serial number must be not existed
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MontreResource\Pages;
-use App\Filament\Resources\MontreResource\RelationManagers;
 use App\Filament\Resources\MontreResource\RelationManagers\MarqueRelationManager;
 use App\Models\Marque;
 use App\Models\Montre;
-use Filament\Actions\DeleteAction;
+use App\Models\Image;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\ColorEntry;
@@ -38,40 +39,47 @@ class MontreResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make("serial_number")
-                    ->label("Serial Number")
+                Forms\Components\TextInput::make('serial_number')
+                    ->label('Serial Number')
                     ->required(),
-                Forms\Components\Select::make("marque_id")
-                    ->label("Marque")
+                Forms\Components\Select::make('marque_id')
+                    ->label('Marque')
                     ->options(function () {
                         return Cache::remember('marques', 60, function () {
-                            return Marque::pluck("brand", "id");
+                            return Marque::pluck('brand', 'id');
                         });
                     })
                     ->searchable()
                     ->required(),
-                Forms\Components\TextInput::make("color")
-                    ->label("Color")
+                Forms\Components\TextInput::make('color')
+                    ->label('Color')
                     ->required(),
-                Forms\Components\TextInput::make("quantite")
-                    ->label("Quantité")
+                Forms\Components\TextInput::make('quantite')
+                    ->label('Quantité')
                     ->numeric()
                     ->minValue(0)
                     ->step(1)
                     ->required(),
-                Forms\Components\TextInput::make("prix")
-                    ->label("Prix")
+                Forms\Components\TextInput::make('prix')
+                    ->label('Prix')
                     ->numeric()
                     ->minValue(0)
                     ->step(1)
                     ->required(),
-                Forms\Components\TextInput::make("reduction")
-                    ->label("Reduction")
+                Forms\Components\TextInput::make('reduction')
+                    ->label('Reduction')
                     ->numeric()
                     ->minValue(0)
                     ->maxValue(100),
-                Forms\Components\MarkdownEditor::make("description")
-                    ->label("Description")
+                Forms\Components\MarkdownEditor::make('description')
+                    ->label('Description')
+                    ->required(),
+                Forms\Components\FileUpload::make('images')
+                    ->label('Upload Images')
+                    ->disk('public')
+                    ->directory('images/montres')
+                    ->multiple()
+                    ->enableOpen()
                     ->required(),
             ]);
     }
@@ -80,20 +88,22 @@ class MontreResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make("serial_number")
-                    ->label("Serial Number")
+                Tables\Columns\TextColumn::make('serial_number')
+                    ->label('Serial Number')
                     ->searchable(),
-                Tables\Columns\TextColumn::make("marque.brand")
-                    ->label("Marque")
+                Tables\Columns\TextColumn::make('marque.brand')
+                    ->label('Marque')
                     ->searchable(),
-                Tables\Columns\TextColumn::make("color")
-                    ->label("Color")
+                Tables\Columns\ColorColumn::make('color')
+                    ->label('Color')
                     ->searchable(),
-                Tables\Columns\TextColumn::make("quantite")
-                    ->label("Quantité"),
-                Tables\Columns\TextColumn::make("prix")
-                    ->label("Prix")
-                    ->money("MAD"),
+                Tables\Columns\TextColumn::make('quantite')
+                    ->label('Quantité'),
+                Tables\Columns\TextColumn::make('prix')
+                    ->label('Prix')
+                    ->money('MAD'),
+                Tables\Columns\TextColumn::make('reduction')
+                    ->label('Reduction'),
             ])
             ->filters([
                 // Add filters here if necessary
@@ -116,17 +126,17 @@ class MontreResource extends Resource
         return $infolist
             ->schema([
                 TextEntry::make('serial_number')
-                    ->label("Serial Number"),
+                    ->label('Serial Number'),
                 TextEntry::make('marque.brand')
-                    ->label("Marque"),
-                TextEntry::make("quantite")
+                    ->label('Marque'),
+                TextEntry::make('quantite')
                     ->label('Quantité'),
-                TextEntry::make("prix")
-                    ->label("Prix")
-                    ->money("MAD"),
-                ColorEntry::make("color"),
-                TextEntry::make("description")
-                    ->label("Description")
+                TextEntry::make('prix')
+                    ->label('Prix')
+                    ->money('MAD'),
+                ColorEntry::make('color'),
+                TextEntry::make('description')
+                    ->label('Description')
                     ->color(Color::Gray),
             ]);
     }
@@ -145,5 +155,22 @@ class MontreResource extends Resource
             'create' => Pages\CreateMontre::route('/create'),
             'edit' => Pages\EditMontre::route('/{record}/edit'),
         ];
+    }
+
+    public static function afterSave($record)
+    {
+        dd($record);
+        $images = request()->allFiles()['images'] ?? [];
+
+        foreach ($images as $image) {
+            $path = $image->store('images/montres', 'public');
+
+            // Create new Image record
+            Image::create([
+                'montre_id' => $record->id,
+                'path' => $path,
+                'name' => $image->getClientOriginalName(),
+            ]);
+        }
     }
 }
