@@ -15,18 +15,15 @@ class CreateMontre extends CreateRecord
 
     protected function handleRecordCreation(array $data): Model
     {
-        //dd($this->data);
         $montre = static::getModel()::create($data);
 
         $images = $data['images'] ;
 
         foreach ($images as $image) {
-            $path = Storage::put('images/montres', $image, 'public');
-
             // Create new Image record
             Image::create([
                 'montre_id' => $montre->id,
-                'path' => $path,
+                'path' => $image,
             ]);
         }
 

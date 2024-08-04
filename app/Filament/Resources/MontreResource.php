@@ -79,7 +79,6 @@ class MontreResource extends Resource
                     ->disk('public')
                     ->directory('images/montres')
                     ->multiple()
-                    ->enableOpen()
                     ->required(),
             ]);
     }
