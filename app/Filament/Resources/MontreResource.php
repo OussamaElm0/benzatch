@@ -12,6 +12,7 @@ use App\Models\Image;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\ColorEntry;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
@@ -44,15 +45,28 @@ class MontreResource extends Resource
                     ->required(),
                 Forms\Components\Select::make('marque_id')
                     ->label('Marque')
+                    ->relationship("marque","brand")
                     ->options(function () {
                         return Cache::remember('marques', 60, function () {
                             return Marque::pluck('brand', 'id');
                         });
                     })
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make("brand")
+                            ->label("Brand")
+                            ->required(),
+                    ])
                     ->searchable()
                     ->required(),
                 Forms\Components\TextInput::make('color')
                     ->label('Color')
+                    ->required(),
+                Forms\Components\Radio::make("gender")
+                    ->label("Gender")
+                    ->options([
+                        "H" => "Male",
+                        "F" => "Female"
+                    ])
                     ->required(),
                 Forms\Components\TextInput::make('quantite')
                     ->label('Quantité')
@@ -75,10 +89,10 @@ class MontreResource extends Resource
                     ->label('Description')
                     ->required(),
                 Forms\Components\FileUpload::make('images')
-                    ->label('Upload Images')
-                    ->disk('public')
-                    ->directory('images/montres')
+                    ->disk("public")
                     ->multiple()
+                    ->directory("images/montres")
+                    ->panelLayout('grid')
                     ->required(),
             ]);
     }
@@ -103,6 +117,7 @@ class MontreResource extends Resource
                     ->money('MAD'),
                 Tables\Columns\TextColumn::make('reduction')
                     ->label('Reduction'),
+                Tables\Columns\ImageColumn::make("images"),
             ])
             ->filters([
                 // Add filters here if necessary
@@ -137,6 +152,8 @@ class MontreResource extends Resource
                 TextEntry::make('description')
                     ->label('Description')
                     ->color(Color::Gray),
+                ImageEntry::make("images")
+                    ->disk("public"),
             ]);
     }
 
@@ -156,20 +173,4 @@ class MontreResource extends Resource
         ];
     }
 
-    public static function afterSave($record)
-    {
-        dd($record);
-        $images = request()->allFiles()['images'] ?? [];
-
-        foreach ($images as $image) {
-            $path = $image->store('images/montres', 'public');
-
-            // Create new Image record
-            Image::create([
-                'montre_id' => $record->id,
-                'path' => $path,
-                'name' => $image->getClientOriginalName(),
-            ]);
-        }
-    }
 }

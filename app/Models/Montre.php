@@ -10,15 +10,15 @@ class Montre extends Model
     use HasFactory;
 
     protected $fillable =
-        ["serial_number", "marque_id", "color", "quantite", "prix", "description", "reduction"];
+        ["serial_number", "marque_id", "images", "color", "quantite", "prix", "description", "reduction"];
+
+    protected $casts = [
+       "images" => "array",
+    ];
 
     public function marque()
     {
         return $this->belongsTo(Marque::class);
-    }
-    public function images()
-    {
-        return $this->hasMany(Image::class);
     }
     public function carts()
     {

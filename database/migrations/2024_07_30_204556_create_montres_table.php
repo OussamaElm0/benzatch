@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string("serial_number")->unique();
             $table->foreignIdFor(Marque::class)->constrained()->cascadeOnDelete();
             $table->string("color");
+            $table->string("images");
             $table->unsignedTinyInteger("quantite");
             $table->unsignedSmallInteger("prix");
+            $table->enum("gender",["H", "F"]);
             $table->text("description");
             $table->unsignedTinyInteger("reduction")->nullable()->default(0);
             $table->timestamps();
@@ -34,6 +36,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('montres');
+        Schema::enableForeignKeyConstraints();
     }
 };
