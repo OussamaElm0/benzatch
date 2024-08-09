@@ -65,8 +65,11 @@ class MontreResource extends Resource
                     ->label("Gender")
                     ->options([
                         "H" => "Male",
-                        "F" => "Female"
+                        "F" => "Female",
+                        "U" => "Uni-sex"
                     ])
+                    ->inline()
+                    ->inlineLabel(false)
                     ->required(),
                 Forms\Components\TextInput::make('quantite')
                     ->label('Quantité')
@@ -87,12 +90,14 @@ class MontreResource extends Resource
                     ->maxValue(100),
                 Forms\Components\MarkdownEditor::make('description')
                     ->label('Description')
+                    ->columnSpanFull()
                     ->required(),
                 Forms\Components\FileUpload::make('images')
                     ->disk("public")
                     ->multiple()
                     ->directory("images/montres")
                     ->panelLayout('grid')
+                    ->columnSpanFull()
                     ->required(),
             ]);
     }
@@ -115,9 +120,11 @@ class MontreResource extends Resource
                 Tables\Columns\TextColumn::make('prix')
                     ->label('Prix')
                     ->money('MAD'),
-                Tables\Columns\TextColumn::make('reduction')
-                    ->label('Reduction'),
-                Tables\Columns\ImageColumn::make("images"),
+                Tables\Columns\ImageColumn::make("images")
+                    ->circular()
+                    ->stacked()
+                    ->limit(2)
+                    ->limitedRemainingText(),
             ])
             ->filters([
                 // Add filters here if necessary

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("images");
             $table->unsignedTinyInteger("quantite");
             $table->unsignedSmallInteger("prix");
-            $table->enum("gender",["H", "F"]);
+            $table->enum("gender",["H", "F", "U"]);
             $table->text("description");
             $table->unsignedTinyInteger("reduction")->nullable()->default(0);
             $table->timestamps();
