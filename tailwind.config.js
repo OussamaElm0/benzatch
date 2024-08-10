@@ -13,7 +13,9 @@ export default {
             gold: "#E5C669",
         },
         fontFamily: {
-            'cormorant': ['Cormorant Upright', 'serif'],
+            cormorant: ['Cormorant Upright', 'serif'],
+            poppins: ['Poppins', 'sans-serif'],
+            lato: ['Lato', 'sans-serif'],
         }
     },
   },

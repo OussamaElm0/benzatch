@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benzatch - @yield("title")</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
 <body>
@@ -12,7 +14,8 @@
     <main>
         @yield("content")
     </main>
-
+    <br />
+    @include("layouts.footer")
     <script>
         <!-- JavaScript to toggle menu visibility -->
         document.getElementById('menu-button').addEventListener('click', function() {

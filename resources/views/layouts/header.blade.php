@@ -4,10 +4,18 @@
             Benzatch
         </a>
         <div class="hidden md:flex space-x-4">
-            <a href="#" class="text-white hover:text-gold  hover:scale-110 px-3 py-2 rounded">Acceuil</a>
-            <a href="#" class="text-white hover:text-gold hover:scale-110 px-3 py-2 rounded">Produits</a>
-            <a href="#" class="text-white hover:text-gold hover:scale-110 px-3 py-2 rounded">Marques</a>
-            <a href="#" class="text-white hover:text-gold hover:scale-110 px-3 py-2 rounded">Contact</a>
+            <a href="{{ route("home") }}" class="hover:scale-110 px-3 py-2 nav-link rounded {{ request()->routeIs('home') ? 'text-gold font-bold active' : 'text-white hover:text-gold' }}">
+                Acceuil
+            </a>
+            <a href="#" class="hover:scale-110 px-3 py-2 nav-link rounded {{ request()->routeIs('') ? 'text-gold font-bold active' : 'text-white hover:text-gold' }}">
+                Produits
+            </a>
+            <a href="#" class="hover:scale-110 px-3 py-2 nav-link rounded {{ request()->routeIs('') ? 'text-gold font-bold active' : 'text-white hover:text-gold' }}">
+                Marques
+            </a>
+            <a href="#" class="hover:scale-110 px-3 py-2 nav-link rounded {{ request()->routeIs('') ? 'text-gold font-bold active' : 'text-white hover:text-gold' }}">
+                Contact
+            </a>
         </div>
         <div class="text-white">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

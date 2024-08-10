@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-link::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 0.2vh;
+    background-color: #E5C669;
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+}
+.get-us {
+    position: relative;
+    display: inline-block;
+}
+.get-us::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 50%;
+    border-bottom: 2px solid white;
+}
