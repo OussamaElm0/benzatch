@@ -14,14 +14,9 @@
     <main>
         @yield("content")
     </main>
-    <br />
     @include("layouts.footer")
-    <script>
-        <!-- JavaScript to toggle menu visibility -->
-        document.getElementById('menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('hidden');
-        });
-    </script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    @vite("resources/js/app.js")
+    @vite("resources/js/typed.js")
 </body>
 </html>
