@@ -3,7 +3,7 @@
 @section("title","Home")
 
 @section("content")
-    <section class="grid grid-cols-1 md:grid-cols-2 bg-black p-8">
+    <section class="grid grid-cols-1 md:grid-cols-2 bg-black p-8 h-auto md:h-[500px]">
         <div class="flex flex-col gap-8">
             <h1 class="font-cormorant text-white text-center md:place-self-center font-bold text-5xl md:text-9xl">
                 Benzatch.
@@ -26,4 +26,16 @@
             class="w-auto h-3/5 mx-auto md:mx-32 mobile:hidden"
         />
     </section>
+    <div class="bg-gray text-black flex sm:h-44 flex-col p-4 text-l sm:text-2xl">
+        <h1 class="marques uppercase title place-self-center tracking-widest">
+            nos marques
+        </h1>
+        <div class="marques-slider px-8 mt-8 flex items-center justify-center gap-8">
+            @foreach($marques as $brand)
+                <a href="{{ route('marques.products', $brand) }}" class="whitespace-nowrap w-1/4 text-center text-black hover:text-red-500 transition-colors duration-300">
+                    {{ $brand }}
+                </a>
+            @endforeach
+        </div>
+    </div>
 @endsection

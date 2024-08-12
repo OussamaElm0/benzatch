@@ -11,6 +11,7 @@ export default {
             black : "#0A0808",
             white: "#F2F4FF",
             gold: "#E5C669",
+            gray: "#f2f4ff",
         },
         fontFamily: {
             cormorant: ['Cormorant Upright', 'serif'],
