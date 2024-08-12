@@ -15,8 +15,7 @@
             </p>
             <a
                 href="#"
-                class="block mx-auto md:inset-x-1/4 flex items-center justify-center text-center bg-gold text-black w-56 h-10
-                       rounded font-semibold hover:bg-black hover:text-gold hover:border-gold hover:border-2 mt-auto"
+                class="block mx-auto md:inset-x-1/4 flex items-center justify-center text-center bg-gold text-black w-56 h-10 rounded font-semibold hover:bg-black hover:text-gold hover:border-gold hover:border-2"
             >
                 Découvrez nos offres
             </a>
