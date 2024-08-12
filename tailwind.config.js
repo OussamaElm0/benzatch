@@ -16,7 +16,10 @@ export default {
             cormorant: ['Cormorant Upright', 'serif'],
             poppins: ['Poppins', 'sans-serif'],
             lato: ['Lato', 'sans-serif'],
-        }
+        },
+        screens: {
+            'mobile': { 'max': '639px' },
+        },
     },
   },
   plugins: [],
