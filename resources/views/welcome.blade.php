@@ -32,7 +32,7 @@
     </section>
 
     {{-- Marque --}}
-    <section class="bg-gray text-black flex sm:h-44 flex-col p-4 text-l sm:text-2xl">
+    <section class="bg-gray text-black flex sm:h-44 flex-col p-4 text-xl sm:text-2xl">
         <h1 class="marques uppercase title place-self-center tracking-widest">
             nos marques
         </h1>
@@ -46,7 +46,7 @@
     </section>
 
     {{-- Collections --}}
-    <section class="bg-gold text-black flex flex-col gap-4 p-4 text-l sm:text-2xl">
+    <section class="bg-gold text-black flex flex-col gap-4 p-4 text-xl sm:text-2xl">
         <h1 class="collections uppercase title place-self-center tracking-widest">
             nos collections
         </h1>
@@ -66,25 +66,23 @@
 
     {{-- Promostions en cours --}}
     <div class="bg-gold flex flex-col gap-4 p-4 text-l">
-        <h1 class="uppercase title place-self-center tracking-widest text-l sm:text-2xl">
+        <h1 class="uppercase title place-self-center tracking-widest text-xl sm:text-2xl">
             promotions en cours
         </h1>
-        <div class="grid mobile:grid-cols-2 md:grid-cols-4 h-auto gap-8">
+        <div class="grid mobile:grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 h-auto gap-8">
             @foreach($montres as $montre)
                 <x-cards.promotion :$montre />
             @endforeach
-            <a href="{{ route("montres.index") }}" class="bg-white sm:h-auto flex flex-col items-center justify-center gap-2 text-xl font-semibold hover:underline rounded">
+            <a href="{{ route("montres.index") }}" class="bg-white sm:h-auto flex flex-col items-center justify-center sm:col-span-2 gap-1 p-2 text-xl text-center break-words font-semibold hover:underline rounded">
                 Explorer Toutes Les Montres
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
+                <x-heroicon-o-arrow-long-right class="w-8" />
             </a>
         </div>
     </div>
 
     {{-- Pourquoi-nous --}}
     <section class="bg-gray flex flex-col gap-4 p-4">
-        <h1 class="uppercase title place-self-center tracking-widest text-l sm:text-2xl">
+        <h1 class="uppercase title place-self-center tracking-widest text-xl sm:text-2xl">
             pourquoi-nous ?
         </h1>
         <div class="p-2 mobile:p-1/4 flex md:flex-row justify-evenly mobile:flex-col mobile:justify-center mobile:items-center mobile:gap-4">
