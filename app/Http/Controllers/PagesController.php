@@ -10,6 +10,7 @@ class PagesController extends Controller
     {
         return view("welcome", [
             'marques' => MarqueController::getAllBrands(),
+            'montres' => MontreController::promotions(),
         ]);
     }
 }

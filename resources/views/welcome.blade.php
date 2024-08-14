@@ -59,4 +59,16 @@
             />
         </div>
     </div>
+    <div class="bg-gold flex flex-col gap-4 p-4 text-l">
+        <h1 class="uppercase title place-self-center tracking-widest text-l sm:text-2xl">
+            promotion en cours
+        </h1>
+        <div class="grid sm:grid-cols-4 gap-8">
+            @forelse($montres as $montre)
+                <x-cards.montre :$montre />
+            @empty
+                <h1>Empty </h1>
+            @endforelse
+        </div>
+    </div>
 @endsection

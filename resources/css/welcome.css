@@ -15,9 +15,7 @@
 .title {
     position: relative;
     display: inline-block;
-}
-.get-us,
-.title {
+
     &::after {
         content: '';
         position: absolute;
