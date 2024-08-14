@@ -30,7 +30,9 @@
             class="w-auto h-3/5 mx-auto md:mx-32 mobile:hidden"
         />
     </section>
-    <div class="bg-gray text-black flex sm:h-44 flex-col p-4 text-l sm:text-2xl">
+
+    {{-- Marque --}}
+    <section class="bg-gray text-black flex sm:h-44 flex-col p-4 text-l sm:text-2xl">
         <h1 class="marques uppercase title place-self-center tracking-widest">
             nos marques
         </h1>
@@ -41,8 +43,10 @@
                 </a>
             @endforeach
         </div>
-    </div>
-    <div class="bg-gold text-black flex flex-col gap-4 p-4 text-l sm:text-2xl">
+    </section>
+
+    {{-- Collections --}}
+    <section class="bg-gold text-black flex flex-col gap-4 p-4 text-l sm:text-2xl">
         <h1 class="collections uppercase title place-self-center tracking-widest">
             nos collections
         </h1>
@@ -58,10 +62,12 @@
                 :collection="'Femmes'"
             />
         </div>
-    </div>
+    </section>
+
+    {{-- Promostions en cours --}}
     <div class="bg-gold flex flex-col gap-4 p-4 text-l">
         <h1 class="uppercase title place-self-center tracking-widest text-l sm:text-2xl">
-            promotion en cours
+            promotions en cours
         </h1>
         <div class="grid mobile:grid-cols-2 md:grid-cols-4 h-auto gap-8">
             @foreach($montres as $montre)
@@ -75,4 +81,31 @@
             </a>
         </div>
     </div>
+
+    {{-- Pourquoi-nous --}}
+    <section class="bg-gray flex flex-col gap-4 p-4">
+        <h1 class="uppercase title place-self-center tracking-widest text-l sm:text-2xl">
+            pourquoi-nous ?
+        </h1>
+        <div class="p-2 mobile:p-1/4 flex md:flex-row justify-evenly mobile:flex-col mobile:justify-center mobile:items-center mobile:gap-4">
+            <div class="flex flex-col justify-center items-center mobile:w-3/4 w-1/4 text-l font-semibold break-words mobile:text-l">
+                <x-iconoir-hand-cash class="sm:w-16 h-16 mobile:w-36" />
+                <h2 class="uppercase">
+                    paiment a la livraison
+                </h2>
+            </div>
+            <div class="flex flex-col justify-center items-center mobile:w-3/4 w-1/4 text-l font-semibold break-words mobile:text-l">
+                <x-hugeicons-delivery-delay-02 class="sm:w-16 h-16 mobile:w-36" />
+                <h2 class="uppercase">
+                    livraison rapide
+                </h2>
+            </div>
+            <div class="flex flex-col justify-center items-center mobile:w-3/4 w-1/4 text-l font-semibold break-words mobile:text-l">
+                <x-gmdi-workspace-premium-o class="sm:w-16 h-16 mobile:w-36" />
+                <h2 class="uppercase">
+                    véritable garantie
+                </h2>
+            </div>
+        </div>
+    </section>
 @endsection
