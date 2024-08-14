@@ -63,12 +63,16 @@
         <h1 class="uppercase title place-self-center tracking-widest text-l sm:text-2xl">
             promotion en cours
         </h1>
-        <div class="grid sm:grid-cols-4 gap-8">
-            @forelse($montres as $montre)
-                <x-cards.montre :$montre />
-            @empty
-                <h1>Empty </h1>
-            @endforelse
+        <div class="grid mobile:grid-cols-2 md:grid-cols-4 h-auto gap-8">
+            @foreach($montres as $montre)
+                <x-cards.promotion :$montre />
+            @endforeach
+            <a href="{{ route("montres.index") }}" class="bg-white sm:h-auto flex flex-col items-center justify-center gap-2 text-xl font-semibold hover:underline rounded">
+                Explorer Toutes Les Montres
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
         </div>
     </div>
 @endsection

@@ -16,6 +16,10 @@ Route::get('/collections/{collection}', function ($collection){
     return $collection;
 })->name("collection.show");
 
+Route::get("montres",function (){
+    return "montres";
+})->name("montres.index");
+
 Route::get("montres/{montre}", function ($montre) {
     return $montre;
 })->name("montres.show");

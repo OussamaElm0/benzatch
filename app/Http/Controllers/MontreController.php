@@ -8,10 +8,11 @@ use App\Http\Requests\UpdateMontreRequest;
 
 class MontreController extends Controller
 {
-    public static function promotions()
+    public static function promotions(int $limit)
     {
         return Montre::where("reduction","!=","null")
             ->orderBy('reduction',"desc")
+            ->limit($limit)
             ->get();
     }
 }
