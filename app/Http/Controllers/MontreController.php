@@ -18,12 +18,12 @@ class MontreController extends Controller
             case "asc" :
                 $montres = Montre::with("marque")
                     ->orderBy("prix","asc")
-                    ->get();
+                    ->paginate(9);
                 break;
             case "desc" :
                 $montres = Montre::with("marque")
                     ->orderBy("prix","desc")
-                    ->get();
+                    ->paginate(9);
                 break;
             default :
                 $montres = Montre::with("marque")
