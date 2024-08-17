@@ -2,12 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Marque;
 use App\Models\Montre;
 use App\Http\Requests\StoreMontreRequest;
 use App\Http\Requests\UpdateMontreRequest;
+use Illuminate\Http\Request;
 
 class MontreController extends Controller
 {
+    public function index(Request $request, string $category = "Tous les montres")
+    {
+        $sortBy = $request->sortBy;
+
+        switch ($sortBy) {
+            case "Asc" :
+                $montres = Montre::with("marque")
+                    ->orderBy("prix","asc")
+                    ->get();
+                break;
+            case "Desc" :
+                $montres = Montre::with("marque")
+                    ->orderBy("prix","desc")
+                    ->get();
+                break;
+            default :
+                $montres = Montre::with("marque")
+                    ->latest()
+                    ->paginate(9);
+                break;
+
+        }
+
+        $marques = Marque::all();
+        return view(
+            "montres.index",
+            compact("montres","category")
+        );
+    }
     public static function promotions(int $limit)
     {
         return Montre::where("reduction","!=","null")

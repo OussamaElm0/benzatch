@@ -4,6 +4,11 @@
     <link rel="stylesheet" href=@vite("resources/css/welcome.css")
 @endpush
 
+@push("scripts")
+    @vite("resources/js/typed.js")
+    @vite("resources/js/slick-slider.js")
+@endpush
+
 @section("title","Home")
 
 @section("content")

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MontreController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,6 +8,10 @@ Route::controller(PagesController::class)->group(function() {
     Route::get('/','home')->name('home');
 });
 
+Route::controller(MontreController::class)->group(function () {
+    Route::get('montres','index')
+        ->name('montres.index');
+});
 //To implement in controller
 Route::get('/{brand}', function($brand){
     return $brand;
@@ -15,10 +20,6 @@ Route::get('/{brand}', function($brand){
 Route::get('/collections/{collection}', function ($collection){
     return $collection;
 })->name("collection.show");
-
-Route::get("montres",function (){
-    return "montres";
-})->name("montres.index");
 
 Route::get("montres/{montre}", function ($montre) {
     return $montre;

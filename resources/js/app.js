@@ -1,7 +1,9 @@
 import './bootstrap';
 
 // JavaScript to toggle menu visibility
-document.getElementById('menu-button').addEventListener('click', function() {
-    const menu = document.getElementById('menu');
-    menu.classList.toggle('hidden');
+const menuButton = document.getElementById('menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+menuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
 });

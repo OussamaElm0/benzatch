@@ -23,7 +23,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     @vite("resources/js/app.js")
-    @vite("resources/js/typed.js")
-    @vite("resources/js/slick-slider.js")
+    @stack("scripts")
 </body>
 </html>

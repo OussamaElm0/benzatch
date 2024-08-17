@@ -11,8 +11,7 @@
         left: 25%;
     }
 }
-.get-us,
-.title {
+.get-us {
     position: relative;
     display: inline-block;
 
@@ -22,15 +21,9 @@
         left: 50%;
         transform: translateX(-50%);
         bottom: -10%;
+        border-bottom: 2px solid white;
+        width: 50%;
     }
-}
-.get-us::after {
-    border-bottom: 2px solid white;
-    width: 50%;
-}
-.title::after {
-    border-bottom: 2px solid black;
-    width: 70%;
 }
 .collection-card:hover {
     img {
