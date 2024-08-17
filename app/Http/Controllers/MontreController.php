@@ -12,15 +12,15 @@ class MontreController extends Controller
 {
     public function index(Request $request, string $category = "Tous les montres")
     {
-        $sortBy = $request->sortBy;
+        $sortBy = $request->query("sortBy");
 
         switch ($sortBy) {
-            case "Asc" :
+            case "asc" :
                 $montres = Montre::with("marque")
                     ->orderBy("prix","asc")
                     ->get();
                 break;
-            case "Desc" :
+            case "desc" :
                 $montres = Montre::with("marque")
                     ->orderBy("prix","desc")
                     ->get();
@@ -30,7 +30,6 @@ class MontreController extends Controller
                     ->latest()
                     ->paginate(9);
                 break;
-
         }
 
         $marques = Marque::all();

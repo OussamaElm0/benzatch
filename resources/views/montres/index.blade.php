@@ -1,7 +1,8 @@
 @extends("layouts.app")
 
 @push("scripts")
-    <script src="@vite('resources/js/sort-by.js')" type="text/javascript"></script>
+    @vite('resources/js/sort-by.js')
+    @vite('resources/js/slick-slider.js')
 @endpush
 
 @section('title','Montres')
@@ -17,5 +18,12 @@
             </h3>
             @include('partials.montres.sort-by')
         </div>
+    </section>
+
+    {{--  Montres  --}}
+    <section class="grid grid-cols-3 gap-12 p-4">
+        @foreach($montres as $montre)
+            <x-cards.montre :$montre class="col-span-1l border-black border" />
+        @endforeach
     </section>
 @endsection

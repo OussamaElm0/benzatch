@@ -4,7 +4,7 @@
     </h1>
     <div class="grid mobile:grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 h-auto gap-8">
         @foreach($montres as $montre)
-            <x-cards.promotion :$montre />
+            <x-cards.montre :$montre />
         @endforeach
         <a href="{{ route("montres.index") }}" class="bg-white sm:h-auto flex flex-col items-center justify-center sm:col-span-2 gap-1 p-2 text-xl text-center break-words font-semibold hover:underline rounded">
             Explorer Toutes Les Montres
