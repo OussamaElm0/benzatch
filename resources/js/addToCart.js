@@ -13,11 +13,11 @@ $(document).ready(function() {
                 id: montreId
             },
             success: function(response) {
-                alert('Product added to cart successfully!');
+                toastr.success('Produit ajouté au panier avec succès.');
             },
             error: function(xhr, status, error) {
                 console.error('Error adding product to cart:', error);
-                alert('Failed to add product to cart. Please try again.');
+                toastr.error('Impossible d\'ajouter le produit au panier. Veuillez réessayer.');
             }
         });
     });
