@@ -3,6 +3,7 @@
 @push("scripts")
     @vite('resources/js/sort-by.js')
     @vite('resources/js/slick-slider.js')
+    @vite('resources/js/addToCart.js')
 @endpush
 
 @section('title','Montres')

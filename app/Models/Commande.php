@@ -10,7 +10,7 @@ class Commande extends Model
     use HasFactory;
 
     protected $fillable =
-        ["client_name", "client_name", "confirme", "total"];
+        ["client_name", "client_contact", "confirme", "total"];
 
     public function carts()
     {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\MontreController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,10 @@ Route::controller(PagesController::class)->group(function() {
 Route::controller(MontreController::class)->group(function () {
     Route::get('montres','index')
         ->name('montres.index');
+});
+Route::controller(CartController::class)->group(function (){
+    Route::post("cart/add","addToCart")
+        ->name("cart.addToCart");
 });
 //To implement in controller
 Route::get('/{brand}', function($brand){
