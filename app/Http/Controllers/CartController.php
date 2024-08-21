@@ -27,10 +27,18 @@ class CartController extends Controller
                 'brand' => $montre->marque->brand,
                 'serial_number' => $montre->serial_number,
                 'price' => $montre->prix - ($montre->reduction * 10),
+                'image' => $montre->images[0],
                 'quantity' => 1,
             ];
         }
 
         session()->put('cart', $cart);
+    }
+
+    public function showItems()
+    {
+        $cartItems = session()->get('cart');
+
+        return view("cart.show",compact("cartItems"));
     }
 }

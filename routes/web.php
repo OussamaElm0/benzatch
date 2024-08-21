@@ -16,6 +16,8 @@ Route::controller(MontreController::class)->group(function () {
 Route::controller(CartController::class)->group(function (){
     Route::post("cart/add","addToCart")
         ->name("cart.addToCart");
+    Route::get('cart/items',"showItems")
+        ->name("cart.showItems");
 });
 //To implement in controller
 Route::get('/{brand}', function($brand){
