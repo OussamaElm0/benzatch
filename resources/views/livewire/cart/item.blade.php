@@ -11,12 +11,12 @@
             alt="{{ $montre['serial_number'] }}"
         />
     </td>
-    <td class="px-6 py-4 mobile:flex mobile:flex-row gap-2">
+    <td class="px-6 py-4 mobile:flex mobile:flex-row gap-2 text-black">
         <button wire:click="decrement" class="text-xl">-</button>
-        <span>{{ $montre['quantity'] }}</span>
+        <span class="mobile:text-xl">{{ $montre['quantity'] }}</span>
         <button wire:click="increment" class="text-xl">+</button>
     </td>
-    <td class="px-6 py-4">
+    <td class="px-6 py-4 text-black">
         {{ $montre['price'] }}
     </td>
     <td>

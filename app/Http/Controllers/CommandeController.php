@@ -3,64 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commande;
-use App\Http\Requests\StoreCommandeRequest;
-use App\Http\Requests\UpdateCommandeRequest;
+use Illuminate\Http\Request;
+use function PHPUnit\Framework\assertJson;
+
 
 class CommandeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __invoke(Request $request)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            "client_name" => "required|string|min:3",
+            "client_contact" => "required|min:9"
+        ]);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        $cartItems = session()->get('cart', []);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCommandeRequest $request)
-    {
-        //
-    }
+        if (empty($cartItems)) {
+            return redirect()->back()->with("error","Votre panier est vide");
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Commande $commande)
-    {
-        //
-    }
+        $total = array_sum(array_map(function($item) {
+            return $item['quantity'] * $item['price'];
+        }, $cartItems));
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Commande $commande)
-    {
-        //
-    }
+        Commande::create([
+            ...$validatedData,
+            "items" => json_encode($cartItems),
+            "total" => $total,
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCommandeRequest $request, Commande $commande)
-    {
-        //
-    }
+        //Clear the cart
+        session()->put("cart",[]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Commande $commande)
-    {
-        //
+        return redirect()->back()->with("success", "Commande confirmée avec succès !");
     }
 }
