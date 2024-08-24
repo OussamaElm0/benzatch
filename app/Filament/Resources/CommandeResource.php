@@ -26,7 +26,7 @@ class CommandeResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return "En attente : " . static::getModel()::where('status','pending')->count();
+        return "En attente: " . static::getModel()::where('status','pending')->count();
     }
 
     public static function form(Form $form): Form
@@ -95,9 +95,11 @@ class CommandeResource extends Resource
                 TextEntry::make('client_contact')
                     ->label('Contact')
                     ->extraAttributes(['class' => 'font-bold']),
+                TextEntry::make('created_at')
+                    ->label('Date')
+                    ->extraAttributes(['class' => 'font-bold']),
                 TextEntry::make('total')
                     ->color(Color::Green)
-                    ->columnSpan(2)
                     ->extraAttributes(['class' => 'font-extrabold']),
                 ViewEntry::make('items')
                     ->view('filament.infolists.commande-items')
