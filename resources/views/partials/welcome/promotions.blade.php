@@ -6,7 +6,7 @@
         @foreach($montres as $montre)
             <x-cards.montre :$montre />
         @endforeach
-        <a href="{{ route("montres.index") }}" class="bg-white sm:h-auto flex flex-col items-center justify-center sm:col-span-2 gap-1 p-2 text-xl text-center break-words font-semibold hover:underline rounded">
+        <a href="{{ route("montres.index") }}" class="bg-white sm:h-auto flex flex-col items-center justify-center sm:col-auto gap-1 p-2 text-xl text-center break-words font-semibold hover:underline rounded">
             Explorer Toutes Les Montres
             <x-heroicon-o-arrow-long-right class="w-8" />
         </a>
