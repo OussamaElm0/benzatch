@@ -13,6 +13,7 @@ Route::controller(PagesController::class)->group(function() {
 Route::controller(MontreController::class)->group(function () {
     Route::get('montres','index')
         ->name('montres.index');
+    Route::get('/collections/{collection}','parCollection')->name("collection.show");
 });
 
 Route::controller(CartController::class)->group(function (){
@@ -29,9 +30,7 @@ Route::get('/{brand}', function($brand){
     return $brand;
 })->name("marques.products");
 
-Route::get('/collections/{collection}', function ($collection){
-    return $collection;
-})->name("collection.show");
+
 
 Route::get("montres/{montre}", function ($montre) {
     return $montre;
