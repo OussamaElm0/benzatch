@@ -12,8 +12,12 @@ class Commande extends Model
     protected $fillable =
         ["client_name", "client_contact", "items", "confirme", "total"];
 
-    public function carts()
+    protected $casts = [
+        'items' => 'array',
+    ];
+
+    public function getTotalQuantityAttribute()
     {
-        return $this->hasMany(Cart::class);
+        return collect($this->items)->sum('quantity');
     }
 }
