@@ -4,9 +4,13 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CommandeResource\Pages;
 use App\Models\Commande;
-use Filament\Forms;
+use Filament\Infolists\Components\RepeatableEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\ViewEntry;
+use Filament\Infolists\Infolist;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -68,7 +72,8 @@ class CommandeResource extends Resource
                     ->query(fn(Builder $query) : Builder => $query->where('status','confirmed'))
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->color(Color::Green),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -77,6 +82,26 @@ class CommandeResource extends Resource
             ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                TextEntry::make('client_name')
+                    ->label('Client')
+                    ->extraAttributes(['class' => 'font-bold']),
+                TextEntry::make('client_contact')
+                    ->label('Contact')
+                    ->extraAttributes(['class' => 'font-bold']),
+                TextEntry::make('total')
+                    ->color(Color::Green)
+                    ->columnSpan(2)
+                    ->extraAttributes(['class' => 'font-extrabold']),
+                ViewEntry::make('items')
+                    ->view('filament.infolists.commande-items')
+                    ->label('Items')
+                    ->columnSpan(2),
+            ]);
+    }
     public static function getRelations(): array
     {
         return [
@@ -89,7 +114,6 @@ class CommandeResource extends Resource
         return [
             'index' => Pages\ListCommandes::route('/'),
             'create' => Pages\CreateCommande::route('/create'),
-            'edit' => Pages\EditCommande::route('/{record}/edit'),
         ];
     }
 }
