@@ -23,22 +23,24 @@ class MontreController extends Controller
         switch ($sortBy) {
             case "asc" :
                 $montres = Montre::with("marque")
+                    ->where('quantite',">",0)
                     ->orderBy("prix","asc")
                     ->paginate(9);
                 break;
             case "desc" :
                 $montres = Montre::with("marque")
+                    ->where('quantite',">",0)
                     ->orderBy("prix","desc")
                     ->paginate(9);
                 break;
             default :
                 $montres = Montre::with("marque")
+                    ->where('quantite',">",0)
                     ->latest()
                     ->paginate(9);
                 break;
         }
 
-        $marques = Marque::all();
         return view(
             "montres.index",
             compact("montres","category")
@@ -48,7 +50,8 @@ class MontreController extends Controller
     public function parCollection(Request $request, string $collection)
     {
         $sortBy = $request->query("sortBy");
-        $montres = Montre::with('marque');
+        $montres = Montre::with('marque')
+            ->where('quantite',">",0);
 
         if ($collection === "hommes") {
             $montres = $montres->whereNot("gender", "F");
