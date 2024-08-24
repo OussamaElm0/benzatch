@@ -1,4 +1,4 @@
-<nav class="bg-black p-4">
+<nav class="bg-black p-4 fixed top-0 w-full z-50">
     <div class="container mx-auto flex justify-between items-center">
         <a class="text-white text-2xl font-bold font-cormorant" href="{{ route('home') }}">
             Benzatch
