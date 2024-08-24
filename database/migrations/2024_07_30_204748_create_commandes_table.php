@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("client_name");
             $table->string("client_contact");
-            $table->boolean("confirmed")->default(0);
+            $table->enum('status',['canceled', 'pending', 'confirmed'])->default('pending');
             $table->json("items");
             $table->unsignedSmallInteger("total");
             $table->timestamps();

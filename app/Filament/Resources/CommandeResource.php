@@ -8,7 +8,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -46,17 +46,24 @@ class CommandeResource extends Resource
                     }),
                 TextColumn::make('total')
                     ->money("MAD"),
-                IconColumn::make('confirmed')
-                    ->boolean(),
+                SelectColumn::make('status')
+                    ->options([
+                        'canceled' => "Annulée",
+                        'pending' => "En attente",
+                        'confirmed' => "Confirmée",
+                    ]),
             ])
             ->defaultSort('created_at','desc')
             ->filters([
-                Tables\Filters\Filter::make('not_confirmed')
+                Tables\Filters\Filter::make('canceled')
                     ->label('Commandes non confirmées')
-                    ->query(fn(Builder $query) : Builder => $query->where('confirmed',false)),
+                    ->query(fn(Builder $query) : Builder => $query->where('status','canceled')),
+                Tables\Filters\Filter::make('pending')
+                    ->label('Commandes en attente')
+                    ->query(fn (Builder $query) : Builder => $query->where('status','pending')),
                 Tables\Filters\Filter::make('confirmed')
                     ->label("Commande confirmées")
-                    ->query(fn(Builder $query) : Builder => $query->where('confirmed',true))
+                    ->query(fn(Builder $query) : Builder => $query->where('status','confirmed'))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

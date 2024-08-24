@@ -76,7 +76,7 @@
                                 <label for="client_contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Numéro de Telphone</label>
                                 <input type="tel" name="client_contact" id="client_contact" placeholder="(212)-612345678" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
                             </div>
-                            <button type="submit" class="w-full text-black bg-gold hover:bg-black hover:text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">Login to your account</button>
+                            <button type="submit" class="w-full text-black bg-gold hover:bg-black hover:text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">Confirmer la commande</button>
                         </form>
                     </div>
                 </div>
