@@ -50,7 +50,12 @@ class CommandeResource extends Resource
                     ->boolean(),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('not_confirmed')
+                    ->label('Commandes non confirmées')
+                    ->query(fn(Builder $query) : Builder => $query->where('confirmed',false)),
+                Tables\Filters\Filter::make('confirmed')
+                    ->label("Commande confirmées")
+                    ->query(fn(Builder $query) : Builder => $query->where('confirmed',true))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
