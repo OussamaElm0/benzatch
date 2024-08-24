@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CommandeResource\Pages;
 use App\Models\Commande;
-use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ViewEntry;
 use Filament\Infolists\Infolist;
@@ -16,7 +15,6 @@ use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CommandeResource extends Resource
 {
@@ -25,6 +23,11 @@ class CommandeResource extends Resource
     protected static ?string $navigationIcon = 'polaris-order-filled-icon';
 
     protected static ?int $navigationSort = 2;
+
+    public static function getNavigationBadge(): ?string
+    {
+        return "En attente : " . static::getModel()::where('status','pending')->count();
+    }
 
     public static function form(Form $form): Form
     {

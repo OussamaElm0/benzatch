@@ -32,6 +32,11 @@ class MontreResource extends Resource
 
     protected static ?int $navigationSort = 0;
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function query(): Builder
     {
         return parent::query()->with('marque'); // Eager load the marque relationship
