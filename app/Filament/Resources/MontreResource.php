@@ -22,6 +22,7 @@ use Filament\Support\Colors\Color;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Cache;
+use Filament\Tables\Actions\ActionGroup;
 
 class MontreResource extends Resource
 {
@@ -130,10 +131,13 @@ class MontreResource extends Resource
                 // Add filters here if necessary
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make()
-                    ->color(Color::Green),
-                Tables\Actions\DeleteAction::make(),
+                ActionGroup::make([
+                    Tables\Actions\EditAction::make()
+                        ->color(Color::Orange),
+                    Tables\Actions\ViewAction::make()
+                        ->color(Color::Green),
+                    Tables\Actions\DeleteAction::make(),
+                ])->iconButton()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
