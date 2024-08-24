@@ -49,6 +49,7 @@ class CommandeResource extends Resource
                 IconColumn::make('confirmed')
                     ->boolean(),
             ])
+            ->defaultSort('created_at','desc')
             ->filters([
                 Tables\Filters\Filter::make('not_confirmed')
                     ->label('Commandes non confirmées')
