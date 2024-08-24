@@ -18,6 +18,12 @@ class Commande extends Model
 
     public function getTotalQuantityAttribute()
     {
-        return collect($this->items)->sum('quantity');
+        $items = json_decode($this->items, true);
+
+        if (is_array($items)) {
+            return array_sum(array_column($items, 'quantity'));
+        }
+
+        return 0;
     }
 }

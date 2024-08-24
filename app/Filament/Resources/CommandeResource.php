@@ -36,9 +36,11 @@ class CommandeResource extends Resource
             ->columns([
                 TextColumn::make('id'),
                 TextColumn::make('client_name')
-                    ->label('Client'),
+                    ->label('Client')
+                    ->searchable(),
                 TextColumn::make('client_contact')
-                    ->label('Contact'),
+                    ->label('Contact')
+                    ->searchable(),
                 TextColumn::make('items')
                     ->label('Montres')
                     ->getStateUsing(function (Commande $record) {
