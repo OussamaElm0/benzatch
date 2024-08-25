@@ -79,4 +79,36 @@ class MontreController extends Controller
         ]);
     }
 
+    public function parMarque(Request $request, string $brand)
+    {
+        $sortBy = $request->query('sortBy');
+        $marque = Marque::where("brand",$brand)->first();
+
+        if ($marque) {
+            $query = Montre::where('marque_id', $marque->id)
+                ->where('quantite', '>', 0);
+
+            switch ($sortBy) {
+                case "asc":
+                    $query = $query->orderBy("prix", "asc");
+                    break;
+                case "desc":
+                    $query = $query->orderBy("prix", "desc");
+                    break;
+                default:
+                    $query = $query->latest();
+                    break;
+            }
+
+            $montres = $query->paginate(9);
+
+            return view('montres.index', [
+                "montres" => $montres,
+                "category" => $marque->brand,
+            ]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
 }
