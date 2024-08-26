@@ -16,20 +16,24 @@
             </h1>
             <div class="flex justify-between p-5 mobile:flex-col mobile:gap-6">
                 <h3 class="sm:font-semibold text-xl sm:text-2xl">
-                    {{ __($category) }}
+                    {{ ucfirst(__($category)) }}
                 </h3>
                 @include('partials.montres.sort-by')
             </div>
         </article>
 
         {{--  Montres  --}}
-        <article class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 gap-y-8 sm:gap-12 p-4">
-            @foreach($montres as $montre)
+        @forelse($montres as $montre)
+            <article class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 gap-y-8 sm:gap-12 p-4">
                 <x-cards.montre :$montre class="col-span-1l border-black border" />
-            @endforeach
-        </article>
-        <div class="p-8">
-            {{ $montres->links() }}
-        </div>
+            </article>
+            <div class="p-8">
+                {{ $montres->links() }}
+            </div>
+        @empty
+            <h1 class="w-full p-8 text-center text-xl sm:text-2xl font-semibold">
+                Désolé, aucune montre n'est disponible dans cette catégorie.
+            </h1>
+        @endforelse
     </section>
 @endsection
