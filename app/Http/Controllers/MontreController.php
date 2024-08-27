@@ -110,5 +110,10 @@ class MontreController extends Controller
             return redirect()->back();
         }
     }
+    public function show(Montre $montre)
+    {
+//        dd($montre);
 
+        return view('montres.show',compact("montre"));
+    }
 }

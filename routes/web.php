@@ -15,6 +15,7 @@ Route::controller(MontreController::class)->group(function () {
         ->name('montres.index');
     Route::get('/collections/{collection}','parCollection')->name("collection.show");
     Route::get('/{brand}', 'parMarque')->name("marques.products");
+    Route::get("montres/{montre}", 'show')->name("montres.show");
 });
 
 Route::controller(CartController::class)->group(function (){
@@ -28,6 +29,4 @@ Route::post('commande',CommandeController::class)
     ->name('commande.store');
 
 //To implement in controller
-Route::get("montres/{montre}", function ($montre) {
-    return $montre;
-})->name("montres.show");
+

@@ -15,7 +15,7 @@
             {{ $montre->prix }} MAD
         </span>
             <span class="font-semibold">
-            {{ $montre->prix - ($montre->reduction * 10) }} MAD
+            {{ $montre->prix * (1 - $montre->reduction / 100) }} MAD
         </span>
             @if($montre->reduction != 0)
                 <span class="font-semibold text-red-600">
@@ -24,7 +24,9 @@
             @endif
         </p>
     </a>
-    <button data-id="{{ $montre->id }}" class="add-to-cart rounded w-full h-auto p-2 text-white bg-black text-l hover:bg-gold hover:text-black">
+    <button data-id="{{ $montre->id }}" data-url="{{ route('cart.addToCart') }}"
+            class="add-to-cart rounded w-full h-auto p-2 text-white bg-black text-l hover:bg-gold hover:text-black"
+    >
         Ajouter Au Panier
     </button>
 </article>
