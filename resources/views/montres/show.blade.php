@@ -26,8 +26,6 @@
                 autoplaySpeed: 2500,
                 arrows: true,
                 dots: true,
-                prevArrow: '<button type="button" class="slick-prev"><span class="sr-only">Previous</span></button>',
-                nextArrow: '<button type="button" class="slick-next"><span class="sr-only">Next</span></button>'
             });
         });
     </script>
@@ -37,7 +35,7 @@
 
 @section('content')
     <section class="flex flex-col p-4 bg-gray items-center">
-        <article class="grid grid-cols-2 gap-4 m-10 p-8 w-3/4 h-96 border-black border-2 bg-[#FFF] rounded">
+        <article class="grid grid-cols-2 mobile:grid-cols-1 gap-4 mobile:gap-5 m-10 p-8 w-3/4 h-96 mobile:h-auto border-black border-2 bg-[#FFF] rounded">
             <div class="w-full h-full montre-images slider">
                 @foreach($montre->images as $image)
                     <img
@@ -48,8 +46,8 @@
                 @endforeach
             </div>
 
-            <div class="flex flex-col gap-2 relative">
-                <h1 class="font-semibold sm:text-3xl">
+            <div class="flex flex-col gap-2 relative mobile:h-auto">
+                <h1 class="font-semibold sm:text-3xl mobile:text-2xl">
                     {{ $montre->serial_number }}
                     @if($montre->reduction > 0)
                         <span class="text-red-600">
@@ -71,9 +69,9 @@
                     @endif
                     MAD
                 </h3>
-                <div class="flex flex-col gap-3 w-full items-center absolute bottom-0">
+                <div class="flex flex-col gap-3 w-full items-center absolute mobile:relative bottom-0">
                     <div class="flex flex-row flex-nowrap gap-3 w-full justify-center">
-                        <button onclick="decrement()" class="w-1/5 bg-gold text-black p-1 rounded text-xl">
+                        <button onclick="decrement()" class="w-1/5 bg-gold text-black p-1 rounded text-xl mobile:text-l">
                             -
                         </button>
                         <input id="qte" type="number" value="1" min="1" readonly
