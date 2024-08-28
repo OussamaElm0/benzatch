@@ -55,6 +55,9 @@
                         </span>
                     @endif
                 </h1>
+                <div class="flex gap-3 text-xl font-semibold">
+                    Color: <span class="bg-{{ lcfirst($montre->color) }} w-8 h-8"></span>
+                </div>
                 <div class="text-justify sm:text-xl font-light tracking-wide">
                     {{ $montre->description }}
                 </div>
