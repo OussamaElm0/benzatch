@@ -22,18 +22,22 @@
             </div>
         </article>
 
-        {{--  Montres  --}}
-        @forelse($montres as $montre)
-            <article class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 gap-y-8 sm:gap-12 p-4">
-                <x-cards.montre :$montre class="col-span-1l border-black border" />
+        {{-- Montres --}}
+
+        {{-- Check if t --}}
+        @if (count($montres) !== 0)
+            <article class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 gap-y-8 sm:gap-12 p-4">
+                @foreach($montres as $montre)
+                    <x-cards.montre :$montre class="col-span-1 border-black border" />
+                @endforeach
             </article>
             <div class="p-8">
                 {{ $montres->links() }}
             </div>
-        @empty
+        @else
             <h1 class="w-full p-8 text-center text-xl sm:text-2xl font-semibold">
                 Désolé, aucune montre n'est disponible dans cette catégorie.
             </h1>
-        @endforelse
+        @endif
     </section>
 @endsection

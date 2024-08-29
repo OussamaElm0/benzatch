@@ -37,7 +37,7 @@ class MontreController extends Controller
                 $montres = Montre::with("marque")
                     ->where('quantite',">",0)
                     ->latest()
-                    ->paginate(9);
+                    ->paginate(4);
                 break;
         }
 
