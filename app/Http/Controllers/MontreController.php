@@ -112,8 +112,22 @@ class MontreController extends Controller
     }
     public function show(Montre $montre)
     {
-//        dd($montre);
+        $marque = $montre->marque;
+        //Display similar watches
+        $similars = $marque->montres()
+            ->whereNot('id',$montre->id)
+            ->limit(4)
+            ->get();
 
-        return view('montres.show',compact("montre"));
+        if (count($similars) === 0){
+            $similars = Montre::where('reduction', '>', 0)
+                ->whereNot('id',$montre->id)
+                ->orderBy('reduction','desc')
+                ->limit(4)
+                ->get();
+
+        }
+
+        return view('montres.show',compact("montre", "similars"));
     }
 }

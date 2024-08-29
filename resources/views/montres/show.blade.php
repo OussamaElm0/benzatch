@@ -24,8 +24,18 @@
                 slidesToScroll: 1,
                 autoplay: true,
                 autoplaySpeed: 2500,
-                arrows: true,
+                arrows: false,
                 dots: true,
+            });
+
+            $('.montre-images').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                infinite: true,
+                arrows: false,
+                dots: false,
             });
         });
     </script>
@@ -35,8 +45,8 @@
 
 @section('content')
     <section class="flex flex-col p-4 bg-gray items-center">
-        <article class="grid grid-cols-2 mobile:grid-cols-1 gap-4 mobile:gap-5 m-10 p-8 w-3/4 h-96 mobile:h-auto border-black border-2 bg-[#FFF] rounded">
-            <div class="w-full h-full montre-images slider">
+        <article class="grid grid-cols-2 mobile:grid-cols-1 gap-4 mobile:gap-5 m-4 mobile:m-0 p-8 w-3/4 mobile:w-10/12 h-96 mobile:h-auto border-black border-2 bg-[#FFF] rounded">
+            <div class="w-full h-full slider">
                 @foreach($montre->images as $image)
                     <img
                         src="{{ asset('storage/' . $image) }}"
@@ -91,5 +101,21 @@
                 </div>
             </div>
         </article>
+        <article class="flex flex-col gap-5 p-4 text-l">
+            <h1 class="uppercase title place-self-center font-semibold tracking-widest text-xl sm:text-2xl">
+                Vous aimerez peut-être aussi
+            </h1>
+            <div class="grid mobile:grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 h-auto gap-8">
+                @foreach($similars as $montre)
+                    <x-cards.montre
+                        :$montre
+                        @class("border-2 border-black")
+                    />
+                @endforeach
+            </div>
+        </article>
     </section>
+
+    {{-- Why US --}}
+    @include('partials.welcome.why-us')
 @endsection

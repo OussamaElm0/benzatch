@@ -1,14 +1,14 @@
 <article class="bg-white sm:h-auto flex flex-col p-2 rounded gap-2 {{ $attributes->get('class') }}">
     <a href="{{ route("montres.show",$montre) }}">
-    <span  class="montre-images">
-        @foreach($montre->images as $image)
-            <img
-                src="{{ asset("storage/" . $image) }}"
-                alt="{{ $montre->serial_number }}"
-                class="h-60 w-full object-contain"
-            />
-        @endforeach
-    </span>
+        <span  class="montre-images">
+            @foreach($montre->images as $image)
+                <img
+                    src="{{ asset("storage/" . $image) }}"
+                    alt="{{ $montre->serial_number }}"
+                    class="h-60 w-full object-contain"
+                />
+            @endforeach
+        </span>
         <h3>{{ $montre->marque->brand }} - {{ $montre->serial_number }}</h3>
         <p class="text-l sm:text-xl">
         <span class="font-light line-through">
