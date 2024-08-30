@@ -13,7 +13,7 @@
             <a href="#" class="hover:scale-110 px-3 py-2 nav-link rounded {{ request()->routeIs('') ? 'text-gold font-bold active' : 'text-white hover:text-gold' }}">
                 Marques
             </a>
-            <a href="#" class="hover:scale-110 px-3 py-2 nav-link rounded {{ request()->routeIs('') ? 'text-gold font-bold active' : 'text-white hover:text-gold' }}">
+            <a href="{{ route('contact') }}" class="hover:scale-110 px-3 py-2 nav-link rounded {{ request()->routeIs('') ? 'text-gold font-bold active' : 'text-white hover:text-gold' }}">
                 Contact
             </a>
         </div>
