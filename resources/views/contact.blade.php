@@ -4,10 +4,10 @@
 
 @section('content')
     <section class="flex flex-col p-8 bg-gray">
-        <h1 class="uppercase title place-self-center tracking-widest text-2xl">
+        <h1 class="uppercase title place-self-center tracking-widest text-2xl mobile:text-xl">
             besoin d'aide ? contactez-nous
         </h1>
-        <article class="grid md:grid-cols-3 p-16">
+        <article class="grid md:grid-cols-3 p-16 mobile:grid-cols-1 mobile:p-3 mobile:mt-2 mobile:gap-5">
             <!-- Form Section -->
             <div class="md:col-span-1">
                 <form class="max-w-md mx-auto">
@@ -38,8 +38,8 @@
             </div>
 
             <!-- Social Media Links Section -->
-            <div class="md:col-span-1 flex flex-row justify-center items-center gap-12">
-                <div class="flex flex-col gap-3 items-center cursor-pointer hover:text-blue-600">
+            <div class="md:col-span-1 flex flex-row justify-center items-center gap-12 mobile:flex-col mobile:gap-6">
+                <div class="flex flex-col gap-3  items-center cursor-pointer hover:text-blue-600">
                     <x-bi-facebook class="w-8 h-8" />
                     <a href="#" class="font-poppins font-semibold text-l">
                         Facebook
