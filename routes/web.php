@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MontreController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,5 @@ Route::post('commande',CommandeController::class)
 Route::view("contact","contact")
     ->name('contact');
 
+Route::post("contact/send",MessageController::class)
+    ->name('message.create');
