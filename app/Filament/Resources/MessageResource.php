@@ -19,6 +19,7 @@ use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class MessageResource extends Resource
@@ -70,6 +71,25 @@ class MessageResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\BulkAction::make('markAsRead')
+                        ->label('Marquer comme lu')
+                        ->icon('heroicon-o-eye')
+                        ->color(Color::Blue)
+                        ->action(function (Collection $records) {
+                            foreach ($records as $record) {
+                                $record->update(['vu' => true]);
+                            }
+                        })
+                        ->requiresConfirmation(),
+                    Tables\Actions\BulkAction::make('markAsNotRead')
+                        ->label('Marquer comme non lu')
+                        ->icon('heroicon-o-eye')
+                        ->action(function (Collection $records) {
+                            foreach ($records as $record) {
+                                $record->update(['vu' => false]);
+                            }
+                        })
+                        ->requiresConfirmation(),
                 ]),
             ]);
     }
