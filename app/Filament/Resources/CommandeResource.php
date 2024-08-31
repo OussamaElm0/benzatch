@@ -29,6 +29,11 @@ class CommandeResource extends Resource
         return "En attente: " . static::getModel()::where('status','pending')->count();
     }
 
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -118,7 +123,6 @@ class CommandeResource extends Resource
     {
         return [
             'index' => Pages\ListCommandes::route('/'),
-            'create' => Pages\CreateCommande::route('/create'),
         ];
     }
 }

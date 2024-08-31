@@ -29,12 +29,9 @@ class MessageResource extends Resource
 
     protected static ?int $navigationSort = 3;
 
-    public static function form(Form $form): Form
+    public static function canCreate(): bool
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return false;
     }
 
     public static function table(Table $table): Table
@@ -110,7 +107,6 @@ class MessageResource extends Resource
     {
         return [
             'index' => Pages\ListMessages::route('/'),
-            'create' => Pages\CreateMessage::route('/create'),
         ];
     }
 }
