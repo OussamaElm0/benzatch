@@ -34,6 +34,11 @@ class MessageResource extends Resource
         return false;
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::where('vu','false')->count();
+    }
+
     public static function table(Table $table): Table
     {
         return $table
