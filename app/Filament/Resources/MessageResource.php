@@ -16,6 +16,7 @@ use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -58,7 +59,7 @@ class MessageResource extends Resource
             ])
             ->defaultSort('created_at','desc')
             ->filters([
-                //
+                TernaryFilter::make('vu')
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
