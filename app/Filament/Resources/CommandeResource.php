@@ -7,7 +7,6 @@ use App\Models\Commande;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ViewEntry;
 use Filament\Infolists\Infolist;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
 use Filament\Tables;
@@ -32,14 +31,6 @@ class CommandeResource extends Resource
     public static function canCreate(): bool
     {
         return false;
-    }
-
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                //
-            ]);
     }
 
     public static function table(Table $table): Table
@@ -111,12 +102,6 @@ class CommandeResource extends Resource
                     ->label('Items')
                     ->columnSpan(2),
             ]);
-    }
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

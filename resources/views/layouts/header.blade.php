@@ -48,7 +48,7 @@
                                 @foreach($marques as $brand)
                                     <li>
                                         <a href="{{ route('marques.products',$brand) }}" class="block px-4 py-2 hover:bg-gray-100 hover:bg-[#e5e7eb]">
-                                            {{ $brand }}
+                                            {{ ucfirst($brand) }}
                                         </a>
                                     </li>
                                 @endforeach
