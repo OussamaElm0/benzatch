@@ -7,7 +7,12 @@ use App\Filament\Resources\MessageResource\RelationManagers;
 use App\Models\Message;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\ViewEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
@@ -46,8 +51,8 @@ class MessageResource extends Resource
                 TextColumn::make('message')
                     ->label('Message')
                     ->limit(20),
-                ToggleColumn::make('vue')
-                    ->label('Vue'),
+                ToggleColumn::make('vu')
+                    ->label('Vu'),
                 TextColumn::make('created_at')
                     ->label('Date'),
             ])
@@ -56,12 +61,40 @@ class MessageResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->color(Color::Green),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ]);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                TextEntry::make('prenom')
+                    ->label('Prenom')
+                    ->extraAttributes(['class' => 'font-bold']),
+                TextEntry::make('nom')
+                    ->label('Nom')
+                    ->extraAttributes(['class' => 'font-bold']),
+                TextEntry::make('tel')
+                    ->label('Telephone')
+                    ->extraAttributes(['class' => 'font-bold']),
+                TextEntry::make('created_at')
+                    ->label('Date')
+                    ->extraAttributes(['class' => 'font-bold']),
+                IconEntry::make('vu')
+                    ->boolean()
+                    ->size(IconEntry\IconEntrySize::ExtraLarge)
+                    ->label("Marquer comme vu"),
+                TextEntry::make('message')
+                    ->color(Color::Green)
+                    ->columnSpanFull()
+                    ->extraAttributes(['class' => 'font-extrabold']),
             ]);
     }
 
@@ -77,7 +110,6 @@ class MessageResource extends Resource
         return [
             'index' => Pages\ListMessages::route('/'),
             'create' => Pages\CreateMessage::route('/create'),
-            'edit' => Pages\EditMessage::route('/{record}/edit'),
         ];
     }
 }

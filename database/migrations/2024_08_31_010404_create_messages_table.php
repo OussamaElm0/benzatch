@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('prenom');
             $table->string('tel');
             $table->text('message');
-            $table->boolean('vue')->default(false);
+            $table->boolean('vu')->default(false);
             $table->timestamps();
         });
     }
