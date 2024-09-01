@@ -26,6 +26,7 @@ class CartController extends Controller
                 'id' => $montre->id,
                 'brand' => $montre->marque->brand,
                 'serial_number' => $montre->serial_number,
+                'description' => $montre->description,
                 'price' => $montre->prix - ($montre->reduction * 10),
                 'image' => $montre->images[0],
                 'quantity' => 1,

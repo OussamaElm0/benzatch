@@ -1,13 +1,13 @@
 <tr class="bg-white border-b">
     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
         <a href="{{ route('montres.show',$montre['id']) }}" class="hover:underline">
-            {{ $montre['serial_number'] }}
+            {{ $montre['description'] }}
         </a>
     </th>
     <td>
         <img
             src="{{ asset("storage/" . $montre['image']) }}"
-            class="w-16 h-16 self-center rounded m-2"
+            class="w-16 h-16 self-center rounded m-2 break-words"
             alt="{{ $montre['serial_number'] }}"
         />
     </td>

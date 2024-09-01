@@ -1,4 +1,4 @@
-<article class="bg-white sm:h-auto flex flex-col p-2 rounded gap-2 {{ $attributes->get('class') }}">
+<article class="bg-white sm:h-auto flex flex-col p-2 rounded justify-between {{ $attributes->get('class') }}">
     <a href="{{ route("montres.show",$montre) }}">
         <span  class="montre-images">
             @foreach($montre->images as $image)
@@ -9,7 +9,9 @@
                 />
             @endforeach
         </span>
-        <h3>{{ $montre->marque->brand }} - {{ $montre->serial_number }}</h3>
+        <h3 class="font-bold text-xl">
+            {{ $montre->description }}
+        </h3>
         <p class="text-l sm:text-xl">
             @if($montre->reduction != 0)
                 <span class="font-light line-through">

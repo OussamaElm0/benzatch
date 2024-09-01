@@ -58,7 +58,7 @@
 
             <div class="flex flex-col gap-2 relative mobile:h-auto">
                 <h1 class="font-semibold sm:text-3xl mobile:text-2xl">
-                    {{ $montre->serial_number }}
+                    {{ $montre->description }}
                     @if($montre->reduction > 0)
                         <span class="text-red-600">
                             -{{ $montre->reduction }}%
@@ -67,9 +67,6 @@
                 </h1>
                 <div class="flex gap-3 text-xl font-semibold">
                     Color: <span class="bg-{{ lcfirst($montre->color) }} w-8 h-8"></span>
-                </div>
-                <div class="text-justify sm:text-xl font-light tracking-wide">
-                    {{ $montre->description }}
                 </div>
                 <h3 class="text-2xl font-semibold">
                     @if($montre->reduction > 0)
