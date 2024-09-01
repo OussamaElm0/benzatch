@@ -13,6 +13,7 @@ class StatsOverview extends BaseWidget
 {
     use InteractsWithPageFilters;
 
+    protected static ?int $sort = 0;
     protected function getStats(): array
     {
         $startDate = $this->filters['startDate'] ?? null;
