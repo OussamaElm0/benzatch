@@ -11,12 +11,14 @@
         </span>
         <h3>{{ $montre->marque->brand }} - {{ $montre->serial_number }}</h3>
         <p class="text-l sm:text-xl">
-        <span class="font-light line-through">
-            {{ $montre->prix }} MAD
-        </span>
+            @if($montre->reduction != 0)
+                <span class="font-light line-through">
+                    {{ $montre->prix }} MAD
+                </span>
+            @endif
             <span class="font-semibold">
-            {{ $montre->prix * (1 - $montre->reduction / 100) }} MAD
-        </span>
+                {{ $montre->prix * (1 - $montre->reduction / 100) }} MAD
+            </span>
             @if($montre->reduction != 0)
                 <span class="font-semibold text-red-600">
                 -{{ $montre->reduction }}%
