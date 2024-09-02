@@ -66,7 +66,7 @@
                     @endif
                 </h1>
                 <div class="flex gap-3 text-xl font-semibold">
-                    Color: <span class="bg-{{ lcfirst($montre->color) }} w-8 h-8"></span>
+                    Color: {{ ucfirst(__('colors.' . lcfirst($montre->color))) }}
                 </div>
                 <h3 class="text-2xl font-semibold">
                     @if($montre->reduction > 0)
