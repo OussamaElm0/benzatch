@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commande;
+use App\Models\Montre;
 use Illuminate\Http\Request;
 use function PHPUnit\Framework\assertJson;
 
@@ -25,6 +26,17 @@ class CommandeController extends Controller
         $total = array_sum(array_map(function($item) {
             return $item['quantity'] * $item['price'];
         }, $cartItems));
+
+        foreach ($cartItems as $item){
+            $montre = Montre::find($item['id']);
+
+            if ($montre->quantite < $item['quantity']){
+                $errorMessage = "Desolé!La quantité du produit : " . $montre->description . " est insuffisante";
+                return redirect()->back()->with("error", $errorMessage);
+            }
+            $montre->quantite -= $item['quantity'];
+            $montre->save();
+        }
 
         Commande::create([
             ...$validatedData,
