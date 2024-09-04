@@ -1,4 +1,4 @@
-<article class="bg-white sm:h-auto flex flex-col p-2 rounded justify-between {{ $attributes->get('class') }}">
+<article class="bg-white sm:h-auto flex flex-col p-2 rounded justify-between {{ $attributes->get('class') }}" data-aos="fade-up">
     <a href="{{ route("montres.show",$montre) }}">
         <span  class="montre-images">
             @foreach($montre->images as $image)
@@ -6,6 +6,7 @@
                     src="{{ asset("storage/" . $image) }}"
                     alt="{{ $montre->serial_number }}"
                     class="h-60 w-full object-contain"
+                    loading="lazy"
                 />
             @endforeach
         </span>

@@ -19,5 +19,6 @@
         src="{{ asset("images/hero-watch.png") }}"
         alt="Montre"
         class="w-auto h-3/5 mx-auto md:mx-32 mobile:hidden"
+        loading="lazy"
     />
 </section>

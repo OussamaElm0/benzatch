@@ -1,4 +1,4 @@
-<section class="bg-gray flex flex-col gap-4 p-4">
+<section class="bg-gray flex flex-col gap-4 p-4" data-aos="fade-right">
     <h1 class="uppercase title place-self-center tracking-widest text-xl sm:text-2xl">
         pourquoi-nous ?
     </h1>

@@ -52,6 +52,7 @@
                         src="{{ asset('storage/' . $image) }}"
                         alt="{{ $montre->serial_number . '-' . $loop->iteration }}"
                         class="h-60 w-full object-contain"
+                        loading="lazy"
                     />
                 @endforeach
             </div>

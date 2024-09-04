@@ -1,5 +1,5 @@
 @if(count($montres) !== 0)
-    <section class="bg-gold flex flex-col gap-4 p-4 text-l">
+    <section class="bg-gold flex flex-col gap-4 p-4 text-l" data-aos="fade-right">
         <h1 class="uppercase title place-self-center tracking-widest text-xl sm:text-2xl">
             promotions en cours
         </h1>

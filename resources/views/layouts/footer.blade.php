@@ -3,6 +3,7 @@
         src="{{ asset('images/logo.png') }}"
         alt="Benzatch Logo"
         class="h-72 col-span-1 w-auto mobile:h-auto"
+        loading="lazy"
     />
     <div class="col-span-1 text-white mt-7 h-fit">
         <h1 class="font-poppins get-us font-semibold text-l md:text-xl">

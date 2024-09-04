@@ -3,6 +3,7 @@
         src="{{ $imageSrc }}"
         alt="{{ $imageAlt }}"
         class="w-full h-full absolute transition z-0 duration-300 ease-in-out transform"
+        loading="lazy"
     />
     <h1 class="place-self-center absolute text-3xl inset-0 z-10 opacity-0 transition-opacity duration-300 ease-in-out">
         {{ $collection }}

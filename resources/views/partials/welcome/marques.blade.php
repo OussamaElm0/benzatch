@@ -1,4 +1,4 @@
-<section class="bg-gray text-black flex sm:h-44 flex-col p-4 text-xl sm:text-2xl">
+<section class="bg-gray text-black flex sm:h-44 flex-col p-4 text-xl sm:text-2xl" data-aos="fade-right">
     <h1 class="marques uppercase title place-self-center tracking-widest">
         nos marques
     </h1>

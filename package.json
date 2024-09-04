@@ -14,6 +14,7 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "aos": "^2.3.4",
         "bootstrap": "^5.3.3",
         "slick-carousel": "^1.8.1",
         "typed.js": "^2.1.0"

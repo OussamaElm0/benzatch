@@ -1,4 +1,4 @@
-<section class="bg-gold text-black flex flex-col gap-4 p-4 text-xl sm:text-2xl">
+<section class="bg-gold text-black flex flex-col gap-4 p-4 text-xl sm:text-2xl" data-aos="fade-right">
     <h1 class="collections uppercase title place-self-center tracking-widest">
         nos collections
     </h1>
