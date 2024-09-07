@@ -1,4 +1,4 @@
-<article class="bg-white sm:h-auto flex flex-col p-2 rounded justify-between {{ $attributes->get('class') }}" data-aos="fade-up">
+<article class="bg-white sm:h-auto flex flex-col p-2 rounded justify-between {{ $attributes->get('class') }}" >
     <a href="{{ route("montres.show",$montre) }}">
         <span  class="montre-images">
             @foreach($montre->images as $image)

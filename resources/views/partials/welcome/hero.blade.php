@@ -9,7 +9,7 @@
         <p class="slogan h-[50px] text-gold opacity-80 text-center md:place-self-center w-auto lg:w-96 text-xl md:text-2xl font-poppins font-light white">
         </p>
         <a
-            href="#"
+            href="{{ route('montres.index') }}"
             class="block mx-auto md:inset-x-1/4 flex items-center justify-center text-center bg-gold text-black w-56 h-10 rounded font-semibold hover:bg-black hover:text-gold hover:border-gold hover:border-2"
         >
             Découvrez nos offres

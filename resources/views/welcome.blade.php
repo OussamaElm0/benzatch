@@ -25,6 +25,9 @@
     {{-- Promostions en cours --}}
     @include('partials.welcome.promotions')
 
+    {{-- Best Sellers --}}
+    @include('partials.welcome.best-sellers')
+
     {{-- Pourquoi-nous --}}
     @include('partials.welcome.why-us')
 @endsection

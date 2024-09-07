@@ -21,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::share('marques',Marque::pluck('brand')->all());
+        View::share('marques',Marque::orderBy('brand', 'asc')->pluck('brand'));
     }
 }
